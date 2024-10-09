@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Edit User</h1>
+        <div class="d-flex justify-content-end m-3">
+            <a href="{% url 'user_list' %}" class="btn btn-secondary">Back</a>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Mostrar errores generales del formulario de usuario -->
+            {% if user_form.errors %}
+                <div class="alert alert-danger">
+                    <ul>
+                        {% for field, errors in user_form.errors.items %}
+                            {% for error in errors %}
+                                <li>{{ field }}: {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <!-- Mostrar errores generales del formulario de ProfileUser -->
+            {% if profile_form.errors %}
+                <div class="alert alert-danger">
+                    <ul>
+                        {% for field, errors in profile_form.errors.items %}
+                            {% for error in errors %}
+                                <li>{{ field }}: {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            {% if profile_user.photo %}
+                <div class="form-group">
+                    <label>Current Photo</label><br>
+                    <img src="{{ profile_user.photo.url }}" alt="{{ profile_user.first_name }}" style="max-width: 200px; max-height: 200px; margin-bottom: 10px;">
+                </div>
+            {% endif %}
+            <div class="form-group">
+                <label class="photo">Photo</label>
+                <input type="file" class="form-control" id="photo" name="photo">
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" value="{{ user_form.username.value }}">
+            </div>
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input type="text" class="form-control" id="first_name" name="first_name" value="{{ profile_form.first_name.value }}">
+            </div>
+            <div class="form-group">
+                <label for="middle_name">Middle Name</label>
+                <input type="text" class="form-control" id="middle_name" name="middle_name" value="{{ profile_form.middle_name.value }}">
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" class="form-control" id="last_name" name="last_name" value="{{ profile_form.last_name.value }}">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text" class="form-control" id="phone" name="phone" value="{{ profile_form.phone.value }}">
+            </div>
+            <div class="form-group">
+    <label for="birthdate">DOB</label>
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fa fa-calendar"></i>
+            </span>
+        </div>
+        {{ profile_form.birthdate|add_class:"form-control" }}
+    </div>
+</div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" id="address" name="address" value="{{ profile_form.address.value }}">
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select class="form-control" name="gender" id="gender">
+                    <option value="">Select Option</option>
+                    <option value="F" {% if profile_form.gender.value == "F" %}selected{% endif %}>F</option>
+                    <option value="M" {% if profile_form.gender.value == "M" %}selected{% endif %}>M</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ user_form.email.value }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+{% endblock %}

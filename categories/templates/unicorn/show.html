@@ -1,0 +1,55 @@
+<div>
+    <!-- put component code here -->
+    <div class="d-flex justify-content-between m-3">
+        <div class="form-inline">
+            <input type="text" unicorn:model="query" unicorn:keyup="search" placeholder="Search Category..." class="form-control">
+        </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCategoryModal">
+            Create Category
+        </button>
+    </div>
+
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th class="text-center">Category Name</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td class="text-center">{{ category.name }}</td>
+                    <td class="text-center">
+                        <a href="#" class="btn btn-info">Detail</a>
+                        <a href="#" class="btn btn-warning">Edit</a>
+                        <a href="#" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if not categories %}
+        <div class="alert alert-info">No categories found.</div>
+    {% endif %}
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if previous_page %}
+                <a href="#" unicorn:click="go_to_page({{ previous_page }})">previous</a>
+            {% endif %}
+            <span class="current">
+                Page {{ current_page }} of {{ total_pages }}
+            </span>
+            {% if next_page %}
+                <a href="#" unicorn:click="go_to_page({{ next_page }})">next</a>
+            {% endif %}
+        </span>
+    </div>
+
+{#    MODAL#}
+    {% include 'unicorn/create.html' %}
+
+</div>

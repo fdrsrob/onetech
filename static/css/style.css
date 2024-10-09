@@ -1,0 +1,113 @@
+/* Estilo para el Navbar */
+nav {
+    background-color: #ff0000; /* Fondo rojo */
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    height: 60px;
+}
+
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.brand-logo {
+    font-size: 1.8rem;
+    color: #fff; /* Texto blanco para destacar */
+    font-weight: bold;
+}
+
+#nav-mobile {
+    display: flex;
+    list-style: none;
+}
+
+#nav-mobile li {
+    margin-left: 20px;
+}
+
+#nav-mobile li a {
+    color: #fff; /* Enlaces en blanco */
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#nav-mobile li a:hover {
+    color: #000; /* Enlace cambia a negro al pasar el ratón */
+    text-decoration: underline;
+}
+
+/* Estilo para el Sidebar */
+.sidebar {
+    background-color: #000; /* Fondo negro */
+    color: #fff; /* Texto blanco */
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+}
+
+.sidebar-header {
+    text-align: center;
+    padding: 10px;
+}
+
+.sidebar-header h3 {
+    color: #ff0000; /* Título del menú en rojo */
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.sidebar-content {
+    padding-left: 20px;
+}
+
+.sidebar-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-content
+
+/*paginador*/
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+}
+
+.pagination .step-links {
+    display: flex;
+    gap: 10px;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: #007bff;
+    border: 1px solid #007bff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination a:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.pagination .current {
+    padding: 8px 12px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0 5px;
+    color: #555;
+}

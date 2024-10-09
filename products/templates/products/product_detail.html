@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="d-flex justify-content-end m-3">
+            <a href="{% url 'product_list' %}" class="btn btn-secondary">Back</a>
+        </div>
+        <div class="card">
+            <div class="text-center">
+                <h1>Product Detail</h1>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="col-md-6 text-center">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" style="width: 40%;">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3 pt-3">
+                            <div class="text-left">Name</div>
+                            <div class="mx">{{ product.name }}</div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="text-left">Price</div>
+                            <div class="mx">{{ product.price }}</div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="text-left">Stock</div>
+                            <div class="mx">{{ product.stock }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

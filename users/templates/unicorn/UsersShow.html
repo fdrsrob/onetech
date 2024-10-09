@@ -1,0 +1,56 @@
+<div>
+    <div class="d-flex justify-content-between m-3">
+        <div class="form-inline">
+            <input type="text" unicorn:model="query" unicorn:keyup="search" placeholder="Search users..." class="form-control">
+        </div>
+        <a href="{% url 'user_create' %}" class="btn btn-primary">Create Users</a>
+    </div>
+
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th class="text-center">First Name</th>
+                <th class="text-center">Last Name</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Phone</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profile_user in profile_users %}
+                <tr>
+                    <td class="text-center">{{ profile_user.first_name }}</td>
+                    <td class="text-center">{{ profile_user.last_name }}</td>
+                    <td class="text-center">{{ profile_user.user.email }}</td>
+                    <td class="text-center">{{ profile_user.phone }}</td>
+                    <td class="text-center">
+                        <a href="{% url 'user_details' profile_user.pk %}" class="btn btn-info">Detail</a>
+                        <a href="{% url 'user_edit' profile_user.pk %}" class="btn btn-warning">Edit</a>
+                        <a href="{% url 'user_delete' profile_user.pk %}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if not profile_users %}
+        <div class="alert alert-info">No users found.</div>
+    {% endif %}
+
+    <!-- Paginación -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if previous_page %}
+                <a href="#" unicorn:click="go_to_page({{ previous_page }})">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page }} of {{ num_pages }}.
+            </span>
+
+            {% if next_page %}
+                <a href="#" unicorn:click="go_to_page({{ next_page }})">next</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
