@@ -40,7 +40,7 @@ def user_edit(request, pk):
 
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
-            user.set_password(user_form.cleaned_data['password'])
+            # user.set_password(user_form.cleaned_data['password'])
             user.save()
 
             profile = profile_form.save()
@@ -51,8 +51,7 @@ def user_edit(request, pk):
 
     return render(request, 'users/user_edit.html', {
         'user_form': user_form,
-        'profile_form': profile_form,
-        'profile_user': profile_user,
+        'profile_form': profile_form
     })
 
 def user_details(request, pk):

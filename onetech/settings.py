@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'products',
     'categories',
     'users',
+    'frontend',
     'django_unicorn',
     'django.contrib.admin',
     'django.contrib.auth',
